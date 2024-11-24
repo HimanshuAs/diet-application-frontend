@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import bgImage from './assets/images/drink-1532300_1920.jpg';
+import bgImage from './assets/images/basil-583816_1920.jpg';
 import Navbar from "./Navbar";
 import {useNavigate } from "react-router-dom";
 
@@ -89,11 +89,10 @@ const Userquery = () => {
     <>
       <Navbar />
       <div className="relative flex items-center justify-center min-h-screen">
-        {/* Background Image */}
         <div
           className="absolute inset-0 bg-center bg-cover filter blur-sm"
           style={{
-            backgroundImage: `url(${bgImage})`, // Background image URL
+            backgroundImage: `url(${bgImage})`, 
           }}
         ></div>
 
@@ -147,8 +146,8 @@ const Userquery = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
             >
               <option value="">Select Diet Plan</option>
-              <option value="vegetarian">Weight Gain</option>
-              <option value="non-vegetarian">Lose Weight</option>
+              <option value="Weight Gain">Weight Gain</option>
+              <option value="Lose Weight">Lose Weight</option>
             </select>
 
             <textarea

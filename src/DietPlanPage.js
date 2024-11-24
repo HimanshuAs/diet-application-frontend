@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import bgImage from "./assets/images/drink-1532300_1920.jpg"; // Your background image path
+import bgImage from "./assets/images/drink-1532300_1920.jpg";
 
 const DietPlanPage = () => {
-  const [users, setUsers] = useState([]); // State to store user data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [users, setUsers] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
   const navigate = useNavigate();
 
@@ -14,10 +14,11 @@ const DietPlanPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("YOUR_API_ENDPOINT_HERE"); // Replace with actual API endpoint
-        setUsers(response.data); // Assuming API returns an array of users
+        const response = await axios.get("http://127.0.0.1:8000/dietitian/user-queries");
+        console.log("18",response.data)
+        setUsers(response.data); 
       } catch (err) {
-        setError("Failed to fetch users. Please try again.");
+        setError("No Such Data found");
         console.error(err);
       } finally {
         setLoading(false);
@@ -58,6 +59,7 @@ const DietPlanPage = () => {
                   <th className="px-6 py-3 text-left">Preference</th>
                   <th className="px-6 py-3 text-left">Disease</th>
                   <th className="px-6 py-3 text-left">Diet Plan</th>
+                  <th className="px-6 py-3 text-left">Description</th>
                   <th className="px-6 py-3 text-left">Action</th>
                 </tr>
               </thead>

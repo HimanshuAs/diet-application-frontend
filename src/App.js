@@ -10,14 +10,15 @@ import Userquery from "./Userquery";
 import QueryStatus from "./QueryStatus";
 import TrackPage from "./TrackPage";
 import UserDetails from "./UserDetailsModal";
+import WatchDietPlan from "./WatchDietPlan";
 
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    setLoading(true); // Show loader on route change
-    const timeout = setTimeout(() => setLoading(false), 1000); // Simulate async delay
+    setLoading(true);
+    const timeout = setTimeout(() => setLoading(false), 1000); 
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/querystatus" element={<QueryStatus />} />
         <Route path="/trackingDiet" element={<TrackPage />} />
         <Route path="/userdetails/:id" element={<UserDetails />} /> 
+        <Route path="/seeDietPlan" element={<WatchDietPlan />} /> 
         
       </Routes>
     </div>
