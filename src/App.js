@@ -7,6 +7,9 @@ import DietPlanPage from './DietPlanPage';
 import Welcome from './Welcome';
 import Loader from "./Loader";
 import Userquery from "./Userquery";
+import QueryStatus from "./QueryStatus";
+import TrackPage from "./TrackPage";
+import UserDetails from "./UserDetailsModal";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -28,6 +31,10 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/dietitian" element={<DietPlanPage />} />
         <Route path="/userquery" element={<Userquery />} />
+        <Route path="/querystatus" element={<QueryStatus />} />
+        <Route path="/trackingDiet" element={<TrackPage />} />
+        <Route path="/userdetails/:id" element={<UserDetails />} /> 
+        
       </Routes>
     </div>
   );

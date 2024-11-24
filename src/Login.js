@@ -32,9 +32,13 @@ const Login = () => {
 
       if (data.Status === 200) {
         localStorage.setItem("user_id", data.Data.user_id);
+        localStorage.setItem("first_name", data.Data.first_name);
 
         if (data.Data.user_role === "dietitian") {
           navigate("/dietitian");
+        } else if (data.Data.is_profile_set === true) {
+          console.log("40",data.Data.is_profile_set)
+          navigate("/userquery");
         } else {
           navigate("/profile");
         }

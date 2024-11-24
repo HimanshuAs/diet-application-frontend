@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import bgImage from './assets/images/drink-1532300_1920.jpg';
+import Navbar from "./Navbar";
+import {useNavigate } from "react-router-dom";
 
 const Userquery = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    dietitianId: "",
-    allergicToFood: "",
+    allergic_to_food: "",
     preference: "",
     disease: "",
-    dietPlan: "",
-    queryMessage: "",
+    diet_plan: "",
+    query_message: "",
   });
 
   const [status, setStatus] = useState("new");
@@ -45,7 +47,7 @@ const Userquery = () => {
         status,
       };
 
-      const response = await fetch("http://127.0.0.1:8000/user/query/", {
+      const response = await fetch("http://127.0.0.1:8000/user/send-query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,18 +56,20 @@ const Userquery = () => {
       });
 
       const data = await response.json();
+      console.log("57", data);
 
       if (data.Status === 200) {
-        setSuccess(true);
+        setSuccess(true); // Open the success modal
         setError("");
         setFormData({
-          dietitianId: "",
-          allergicToFood: "",
+          allergic_to_food: "",
           preference: "",
           disease: "",
-          dietPlan: "",
-          queryMessage: "",
+          diet_plan: "",
+          query_message: "",
         });
+        
+        
       } else {
         setError(data.message || "Failed to submit the query. Please try again.");
       }
@@ -76,98 +80,113 @@ const Userquery = () => {
     }
   };
 
+  const closeSuccessModal = () => {
+    setSuccess(false);
+    navigate('/trackingDiet')
+  };
+
   return (
-    <div className="relative flex items-center justify-center min-h-screen">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-center bg-cover filter blur-sm"
-        style={{
-          backgroundImage:  `url(${bgImage})`, // Replace with your image URL
-        }}
-      ></div>
+    <>
+      <Navbar />
+      <div className="relative flex items-center justify-center min-h-screen">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-center bg-cover filter blur-sm"
+          style={{
+            backgroundImage: `url(${bgImage})`, // Background image URL
+          }}
+        ></div>
 
-      {/* Content Section */}
-      <div className="relative w-full max-w-lg p-8 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center text-green-600">Submit Your Query</h2>
-        <p className="mb-6 text-center text-gray-500">Let us know your details</p>
+        {/* Content Section */}
+        <div className="relative w-full max-w-lg p-8 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold text-center text-green-600">Submit Your Query</h2>
+          <p className="mb-6 text-center text-gray-500">Let us know your details</p>
 
-        {/* Success/Error Messages */}
-        {success && <p className="mb-4 text-center text-green-600">Query submitted successfully!</p>}
-        {error && <p className="mb-4 text-center text-red-500">{error}</p>}
+          {/* Success/Error Messages */}
+          {success && <p className="mb-4 text-center text-green-600">Query submitted successfully!</p>}
+          {error && <p className="mb-4 text-center text-red-500">{error}</p>}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="dietitianId"
-            placeholder="Dietitian ID"
-            value={formData.dietitianId}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
-          />
+          <form onSubmit={handleSubmit} className="space-y-4">
 
-          <input
-            type="text"
-            name="allergicToFood"
-            placeholder="Allergic to food (Optional)"
-            value={formData.allergicToFood}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
-          />
+            <input
+              type="text"
+              name="allergic_to_food"
+              placeholder="Allergic to food (Optional)"
+              value={formData.allergic_to_food}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+            />
 
-          <select
-            name="preference"
-            value={formData.preference}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
-          >
-            <option value="">Select Dietary Preference</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="non-vegetarian">Non-Vegetarian</option>
-            <option value="vegan">Vegan</option>
-          </select>
+            <select
+              name="preference"
+              value={formData.preference}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+            >
+              <option value="">Select Dietary Preference</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="non-vegetarian">Non-Vegetarian</option>
+              <option value="vegan">Vegan</option>
+            </select>
 
-          <input
-            type="text"
-            name="disease"
-            placeholder="Disease (Optional)"
-            value={formData.disease}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
-          />
+            <input
+              type="text"
+              name="disease"
+              placeholder="Disease (Optional)"
+              value={formData.disease}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+            />
 
-          <select
-            name="dietPlan"
-            value={formData.dietPlan}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
-          >
-            <option value="">Select Diet Plan</option>
-            <option value="vegetarian">Weight Gain</option>
-            <option value="non-vegetarian">Lose Weight</option>
-          </select>
-          
+            <select
+              name="diet_plan"
+              value={formData.diet_plan}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+            >
+              <option value="">Select Diet Plan</option>
+              <option value="vegetarian">Weight Gain</option>
+              <option value="non-vegetarian">Lose Weight</option>
+            </select>
 
-          <textarea
-            name="queryMessage"
-            placeholder="Query Message (Optional)"
-            value={formData.queryMessage}
-            onChange={handleChange}
-            rows="4"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
-          ></textarea>
+            <textarea
+              name="query_message"
+              placeholder="Query Message (Optional)"
+              value={formData.query_message}
+              onChange={handleChange}
+              rows="4"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+            ></textarea>
 
-          <button
-            type="submit"
-            className="w-full py-2 text-white transition bg-green-500 rounded-lg hover:bg-green-600"
-            disabled={loading}
-          >
-            {loading ? "Submitting..." : "Submit Query"}
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="w-full py-2 text-white transition bg-green-500 rounded-lg hover:bg-green-600"
+              disabled={loading}
+            >
+              {loading ? "Submitting..." : "Submit Query"}
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+
+      {/* Success Modal */}
+      {success && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div className="p-8 text-center bg-white rounded-lg shadow-lg w-96">
+            <h2 className="mb-4 text-2xl font-bold text-green-600">Success!</h2>
+            <p className="mb-6 text-lg text-gray-800">Your query has been successfully submitted!</p>
+            <button
+              onClick={closeSuccessModal}
+              className="px-6 py-2 text-white transition duration-300 bg-green-600 rounded-md hover:bg-green-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -65,6 +65,7 @@ const Signup = () => {
       }
 
       const data = await response.json();
+      localStorage.setItem("user_id", data.Data.user_id);
       setSuccess("Signup successful! OTP sent to your email.");
       setShowOtpModal(true);
     } catch (err) {
@@ -100,7 +101,7 @@ const Signup = () => {
 
       const data = await response.json();
       setSuccess("OTP verified successfully! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 1000);
+      setTimeout(() => navigate("/profile"), 1000);
     } catch (err) {
       console.error("OTP verification error:", err.message);
       setError(err.message || "Something went wrong. Please try again.");
