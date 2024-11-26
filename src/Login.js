@@ -43,7 +43,7 @@ const Login = () => {
           navigate("/profile");
         }
       } else {
-        setError(data.message || "Incorrect username or password. Please try again.");
+        setError(data.Message || "Incorrect username or password. Please try again.");
       }
     } catch (error) {
       setError("An error occurred. Please try again.");

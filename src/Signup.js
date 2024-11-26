@@ -4,7 +4,6 @@ import Loader from "./Loader"; // Ensure Loader is implemented or imported corre
 import bgImage from './assets/images/istockphoto-868604108-1024x1024.jpg';
 
 const Signup = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -24,11 +23,6 @@ const Signup = () => {
     e.preventDefault();
     setError("");
     setSuccess("");
-
-    if (!name.trim()) {
-      setError("Name is required.");
-      return;
-    }
     if (!isEmailValid(email)) {
       setError("Enter a valid email address.");
       return;
@@ -53,7 +47,6 @@ const Signup = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name,
           email,
           password,
         }),
@@ -144,14 +137,6 @@ const Signup = () => {
         )}
 
         <form onSubmit={handleSignupSubmit} className="space-y-4">
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
-            required
-          />
           <input
             type="email"
             placeholder="Email"

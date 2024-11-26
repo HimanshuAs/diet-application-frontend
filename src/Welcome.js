@@ -10,7 +10,7 @@ const Welcome = () => {
     >
       <div className="p-8 text-center bg-white rounded-lg shadow-md bg-opacity-80">
         <h1 className="mb-4 text-3xl font-bold text-green-600">
-          Welcome to Your Diet Plan
+          Welcome to HealthQuest
         </h1>
         <p className="text-lg text-gray-700">
           Manage your health and nutrition with a personalized diet plan.

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import bgImage from "./assets/images/drink-1532300_1920.jpg";
+import Nav from "./Nav";
 
 const DietPlanPage = () => {
   const [users, setUsers] = useState([]); 
@@ -18,7 +19,7 @@ const DietPlanPage = () => {
         console.log("18",response.data)
         setUsers(response.data); 
       } catch (err) {
-        setError("No Such Data found");
+        setError("No Query found");
         console.error(err);
       } finally {
         setLoading(false);
@@ -33,6 +34,8 @@ const DietPlanPage = () => {
   };
 
   return (
+    <>
+    <Nav></Nav>
     <div
       className="relative min-h-screen bg-fixed bg-center bg-cover"
       style={{ backgroundImage: `url(${bgImage})` }}
@@ -94,7 +97,9 @@ const DietPlanPage = () => {
         )}
       </div>
     </div>
+    </>
   );
+  
 };
 
 export default DietPlanPage;

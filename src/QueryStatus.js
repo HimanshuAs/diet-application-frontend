@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faDumbbell} from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 const QueryStatus = () => {
+  const navigate= useNavigate()
     const [responses, setResponses] = useState({
       breakfast: null,
       lunch: null,
@@ -58,6 +60,7 @@ const QueryStatus = () => {
             dinner: null,
             exercise: null,
             water_intake: null,
+            
           });
         } else {
           const errorData = await response.json();
@@ -69,6 +72,7 @@ const QueryStatus = () => {
         alert("An error occurred while submitting your responses.");
       } finally {
         setLoading(false);
+        navigate('/trackingDiet')
       }
     };
   

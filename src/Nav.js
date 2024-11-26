@@ -2,9 +2,7 @@ import React from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Nav = () => {
-  const userName = localStorage.getItem("first_name") || "User";
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleLogout = () => {
     localStorage.removeItem("user_id");

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import bgImage from "./assets/images/drink-1532300_1920.jpg"; // Replace with your background image path
-
+import { Link} from "react-router-dom";
 const DietPlanDetails = () => {
   const [dietDetails, setDietDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -147,7 +147,12 @@ const DietPlanDetails = () => {
           {/* Call to Action */}
           <div className="mt-10 text-center">
             <button className="px-6 py-3 font-semibold text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700">
-              Follow This Plan
+            <Link
+            to="/querystatus"
+            
+          >
+           Follow This Plan
+          </Link>
             </button>
           </div>
         </div>
