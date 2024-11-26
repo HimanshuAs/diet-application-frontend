@@ -105,6 +105,9 @@ const UserDetails = () => {
               <strong>Allergic food:</strong> {user.allergic_to_food || "None"}
             </p>
             <p>
+              <strong>BMI:</strong> {user.bmi || "None"}
+            </p>
+            <p>
               <strong>Diet Plan:</strong> {user.diet_plan}
             </p>
           </div>
