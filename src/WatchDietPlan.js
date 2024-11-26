@@ -8,9 +8,9 @@ const DietPlanDetails = () => {
 
   useEffect(() => {
     // Fetch user_id from localStorage
-    const userId = localStorage.getItem("user_id");
+    const id = localStorage.getItem("user_id");
 
-    if (!userId) {
+    if (!id) {
       setError("User ID not found in localStorage.");
       setLoading(false);
       return;
@@ -19,8 +19,9 @@ const DietPlanDetails = () => {
     // Fetch diet plan details from API
     const fetchDietPlan = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/dietitian/diet-plan/${userId}`);
+        const response = await fetch(`http://127.0.0.1:8000/dietitian/diet-plan/${id}`);
         const data = await response.json();
+        console.log("24",data)
 
         if (response.ok) {
           setDietDetails(data);

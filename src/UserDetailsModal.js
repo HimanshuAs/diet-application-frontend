@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import bgImage from "./assets/images/smoothie-3697014_1920.jpg";
+import Nav from "./Nav";
 
 const UserDetails = () => {
   const location = useLocation();
@@ -64,6 +65,8 @@ const UserDetails = () => {
   };
 
   return (
+    <>
+   <Nav></Nav>
     <div className="relative min-h-screen">
       {/* Background Image Layer */}
       <div
@@ -141,7 +144,7 @@ const UserDetails = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">Water Intake (ml):</label>
+              <label className="block text-gray-700">Water Intake (L):</label>
               <input
                 type="number"
                 name="water_intake"
@@ -165,12 +168,12 @@ const UserDetails = () => {
             <div className="mb-4">
               <label className="block text-gray-700">Plan Duration:</label>
               <input
-                type="text"
+                type="number"
                 name="plan_duration"
                 value={formData.plan_duration}
                 onChange={handleInputChange}
                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Enter plan duration"
+                placeholder="Enter plan duration in Weeks"
               />
             </div>
             <div className="mb-4">
@@ -208,6 +211,7 @@ const UserDetails = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
