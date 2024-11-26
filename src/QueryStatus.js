@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUtensils, faDumbbell} from '@fortawesome/free-solid-svg-icons';
+import { faUtensils, faDumbbell, faGlassWater} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
 
 const QueryStatus = () => {
@@ -230,7 +230,7 @@ const QueryStatus = () => {
 
               <div className="p-6 bg-white shadow-md rounded-xl hover:shadow-lg">
                 <h3 className="flex items-center text-xl font-semibold text-green-600">
-                  <FontAwesomeIcon icon={faDumbbell} className="mr-2" />
+                  <FontAwesomeIcon icon={faGlassWater} className="mr-2" />
                   Water Intake
                 </h3>
                 <div className="flex mt-4 space-x-4">
